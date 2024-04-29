@@ -13,5 +13,6 @@ namespace CoffePartners.Models
         public required float Area { get; set; }
         public required Farm IdFarm { get; set; }
         public required StatesCultivation IdStateCultivation { get; set; }
+
     }
 }

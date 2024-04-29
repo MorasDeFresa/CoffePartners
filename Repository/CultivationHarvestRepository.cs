@@ -4,22 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoffePartners.Data;
 using CoffePartners.Models;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoffePartners.Repository
 {
-    public interface ICultivationHarvestRepository
+    public interface ICultivationHarvestHarvestRepository
     {
-        ICollection<CultivationHarvest> getCultivationHarvests();
-        CultivationHarvest getCultivationHarvest(int IdCultivationHarvest);
-        public bool cultivationHarvestExists(int IdCultivationHarvest);
-        bool createCultivationHarvest(CultivationHarvest cultivationHarvest);
-        bool updateCultivationHarvest(CultivationHarvest cultivationHarvest);
-        bool deleteCultivationHarvest(CultivationHarvest cultivationHarvest);
-        bool Save();
+        Task<List<CultivationHarvest>> GetCultivationHarvests();
+        Task<CultivationHarvest> GetCultivationHarvest(int IdCultivationHarvest);
+        Task<CultivationHarvest> CreateCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest);
+        Task<CultivationHarvest> UpdateCultivationHarvest(CultivationHarvest CultivationHarvest);
+        Task<bool> DeleteCultivationHarvest(int IdCultivationHarvest);
     }
 
-    public class CultivationHarvestRepository : ICultivationHarvestRepository
+    public class CultivationHarvestRepository : ICultivationHarvestHarvestRepository
     {
         private readonly DataContext _db;
 
@@ -28,43 +26,47 @@ namespace CoffePartners.Repository
             _db = db;
         }
 
-        public bool createCultivationHarvest(CultivationHarvest cultivationHarvest)
+        public async Task<CultivationHarvest> CreateCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest)
         {
-            _db.Add(cultivationHarvest);
-            return Save();
+            var newCultivationHarvest = new CultivationHarvest()
+            {
+                IdCultivation = IdCultivation,
+                IdHarvest = IdHarvest,
+                WeightHarvest = WeightHarvest
+            };
+
+            await _db.CultivationHarvests.AddAsync(newCultivationHarvest);
+
+            _db.SaveChanges();
+
+            return newCultivationHarvest;
         }
 
-        public bool deleteCultivationHarvest(CultivationHarvest cultivationHarvest)
+        public async Task<List<CultivationHarvest>> GetCultivationHarvests()
         {
-            _db.Remove(cultivationHarvest);
-            return Save();
+            return await _db.CultivationHarvests.ToListAsync();
         }
 
-        public CultivationHarvest getCultivationHarvest(int IdCultivationHarvest)
+        public async Task<CultivationHarvest> GetCultivationHarvest(int IdCultivationHarvest)
         {
-            return _db.CultivationHarvests.Where(cu => cu.IdCultivationHarvest == IdCultivationHarvest).FirstOrDefault();
+            return await _db.CultivationHarvests.FirstOrDefaultAsync(ch => ch.IdCultivationHarvest == IdCultivationHarvest);
         }
 
-        public ICollection<CultivationHarvest> getCultivationHarvests()
+
+        public async Task<CultivationHarvest> UpdateCultivationHarvest(CultivationHarvest CultivationHarvest)
         {
-            return _db.CultivationHarvests.OrderBy(cu => cu.IdCultivationHarvest).ToList();
+            _db.CultivationHarvests.Update(CultivationHarvest);
+            await _db.SaveChangesAsync();
+            return CultivationHarvest;
         }
 
-        public bool cultivationHarvestExists(int IdCultivationHarvest)
+        public async Task<bool> DeleteCultivationHarvest(int IdCultivationHarvest)
         {
-            return _db.CultivationHarvests.Any(cu => cu.IdCultivationHarvest == IdCultivationHarvest);
-        }
+            var cultivationHarvest = await GetCultivationHarvest(IdCultivationHarvest);
 
-        public bool Save()
-        {
-            var saved = _db.SaveChanges();
-            return saved > 0 ? true : false;
-        }
-
-        public bool updateCultivationHarvest(CultivationHarvest cultivationHarvest)
-        {
-            _db.Update(cultivationHarvest);
-            return Save();
+            _db.CultivationHarvests.Remove(cultivationHarvest);
+            await _db.SaveChangesAsync();
+            return true;
         }
 
     }

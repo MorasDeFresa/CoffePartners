@@ -6,18 +6,15 @@ using CoffePartners.Data;
 using CoffePartners.Models;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace CoffePartners.Repository
 {
     public interface ICultivationRepository
     {
-        ICollection<Cultivation> getCultivations();
-        Cultivation getCultivation(int IdCultivation);
-        public bool cultivationExists(int IdCultivation);
-        bool createCultivation(Cultivation cultivation);
-        bool updateCultivation(Cultivation cultivation);
-        bool deleteCultivation(Cultivation cultivation);
-        bool Save();
+        Task<List<Cultivation>> GetCultivations();
+        Task<Cultivation> GetCultivation(int IdCultivation);
+        Task<Cultivation> CreateCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation);
+        Task<Cultivation> UpdateCultivation(Cultivation cultivation);
+        Task<bool> DeleteCultivation(int IdCultivation);
 
     }
 
@@ -31,45 +28,49 @@ namespace CoffePartners.Repository
             _db = db;
         }
 
-
-        public bool createCultivation(Cultivation cultivation)
+        public async Task<Cultivation> CreateCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation)
         {
-            _db.Add(cultivation);
-            return Save();
+            var newCultivation = new Cultivation()
+            {
+                DateCultivation = DateCultivation,
+                Area = Area,
+                IdFarm = IdFarm,
+                IdStateCultivation = IdStateCultivation
+            };
+
+            await _db.Cultivations.AddAsync(newCultivation);
+
+            _db.SaveChanges();
+
+            return newCultivation;
         }
 
-        public bool deleteCultivation(Cultivation cultivation)
+        public async Task<List<Cultivation>> GetCultivations()
         {
-            _db.Remove(cultivation);
-            return Save();
+            return await _db.Cultivations.ToListAsync();
+
         }
 
-        public Cultivation getCultivation(int IdCultivation)
+        public async Task<Cultivation> GetCultivation(int IdCultivation)
         {
-            return _db.Cultivations.Where(c => c.IdCultivation == IdCultivation).FirstOrDefault();
+            return await _db.Cultivations.FirstOrDefaultAsync(cu => cu.IdCultivation == IdCultivation);
         }
 
-        public ICollection<Cultivation> getCultivations()
+
+
+        public async Task<Cultivation> UpdateCultivation(Cultivation cultivation)
         {
-            return _db.Cultivations.OrderBy(c => c.IdCultivation).ToList();
+            _db.Cultivations.Update(cultivation);
+            await _db.SaveChangesAsync();
+            return cultivation;
         }
 
-        public bool cultivationExists(int IdCultivation){
-            return _db.Cultivations.Any(c => c.IdCultivation == IdCultivation);
-        }
-
-        public bool Save()
+        public async Task<bool> DeleteCultivation(int IdCultivation)
         {
-            var saved = _db.SaveChanges();
-            return saved > 0 ? true : false;
+            var cultivation = await GetCultivation(IdCultivation);
+            _db.Cultivations.Remove(cultivation);
+            await _db.SaveChangesAsync();
+            return true;
         }
-
-        public bool updateCultivation(Cultivation cultivation)
-        {
-            _db.Update(cultivation);
-            return Save();
-        }
-
-        
     }
 }
