@@ -13,7 +13,11 @@ namespace CoffePartners.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCultivationHarvest { get; set; }
         public required float WeightHarvest { get; set; }
-        public Cultivation IdCultivation { get; internal set; }
-        public Harvest IdHarvest { get; internal set; }
+        public required int IdCultivation { get; set; }
+        [ForeignKey("IdCultivation")]
+        public Cultivation Cultivation { get; internal set; }
+        public required int IdHarvest { get; set; }
+        [ForeignKey("IdHarvest")]
+        public Harvest Harvest { get; internal set; }
     }
 }

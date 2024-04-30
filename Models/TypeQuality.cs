@@ -11,6 +11,5 @@ namespace CoffePartners.Models
         [Key] public int IdTypeQuality { get; set; }
         public required string NameQuality { get; set; }
         public required float PriceByGr { get; set; }
-        public ICollection<Harvest> Harvest { get; set; }
     }
 }

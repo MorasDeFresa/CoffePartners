@@ -12,6 +12,5 @@ namespace CoffePartners.Models
         public required string EmailPlayer { get; set; }
         public required string PasswordPlayer { get; set; }
         public required string NicknamePlayer { get; set; }
-        public ICollection<Farm> Farms { get; set; }
     }
 }

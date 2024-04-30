@@ -11,6 +11,5 @@ namespace CoffePartners.Models
         [Key] public int IdLevel { get; set; }
         public required float Duration { get; set; }
         public required string Description { get; set; }
-        public ICollection<Score> Scores { get; set; }
     }
 }

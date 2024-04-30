@@ -10,6 +10,5 @@ namespace CoffePartners.Models
     {
         [Key] public int IdStateCultivation { get; set; }
         public required string NameStateCultivation { get; set; }
-        public ICollection<Cultivation> Cultivation { get; set; }
     }
 }
