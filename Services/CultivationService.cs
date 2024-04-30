@@ -13,8 +13,8 @@ namespace CoffePartners.Services
     {
         Task<List<Cultivation>> getCultivations();
         Task<Cultivation> getCultivation(int IdCultivation);
-        Task<Cultivation> createCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation);
-        Task<Cultivation> updateCultivation(int IdCultivation, DateTime? DateCultivation = null, float? Area = null, Farm? IdFarm = null, StatesCultivation? IdStateCultivation = null);
+        Task<Cultivation> createCultivation(DateTime DateCultivation, float Area, int IdFarm, int IdStateCultivation);
+        Task<Cultivation> updateCultivation(int IdCultivation, DateTime? DateCultivation = null, float? Area = null, int? IdFarm = null, int? IdStateCultivation = null);
         Task<bool> deleteCultivation(int IdCultivation);
 
     }
@@ -30,7 +30,7 @@ namespace CoffePartners.Services
             _cultivationRepository = cultivationRepository;
         }
 
-        public async Task<Cultivation> createCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation)
+        public async Task<Cultivation> createCultivation(DateTime DateCultivation, float Area, int IdFarm, int IdStateCultivation)
         {
             return await _cultivationRepository.CreateCultivation(DateCultivation, Area, IdFarm, IdStateCultivation);
         }
@@ -52,7 +52,7 @@ namespace CoffePartners.Services
         }
 
 
-        public async Task<Cultivation> updateCultivation(int IdCultivation, DateTime? DateCultivation = null, float? Area = null, Farm? IdFarm = null, StatesCultivation? IdStateCultivation = null)
+        public async Task<Cultivation> updateCultivation(int IdCultivation, DateTime? DateCultivation = null, float? Area = null, int? IdFarm = null, int? IdStateCultivation = null)
         {
             Cultivation cultivation = await getCultivation(IdCultivation);
             if (IdCultivation <= 0)
@@ -68,9 +68,9 @@ namespace CoffePartners.Services
 
             if (Area != null) cultivation.Area = (float)Area;
 
-            if (IdFarm != null) cultivation.IdFarm = IdFarm;
+            if (IdFarm != null) cultivation.IdFarm = (int)IdFarm;
 
-            if (IdStateCultivation != null) cultivation.IdStateCultivation = IdStateCultivation;
+            if (IdStateCultivation != null) cultivation.IdStateCultivation = (int)IdStateCultivation;
 
             return await _cultivationRepository.UpdateCultivation(cultivation);
 

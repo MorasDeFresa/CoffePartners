@@ -11,21 +11,21 @@ namespace CoffePartners.Services
     {
         Task<List<CultivationHarvest>> getCultivationHarvests();
         Task<CultivationHarvest> getCultivationHarvest(int IdCultivationHarvest);
-        Task<CultivationHarvest> createCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest);
-        Task<CultivationHarvest> updateCultivationHarvest(int IdCultivationHarvest, Cultivation? IdCultivation = null, Harvest? IdHarvest = null, float? WeightHarvest = null);
+        Task<CultivationHarvest> createCultivationHarvest(int IdCultivation, int IdHarvest, float WeightHarvest);
+        Task<CultivationHarvest> updateCultivationHarvest(int IdCultivationHarvest, int? IdCultivation = null, int? IdHarvest = null, float? WeightHarvest = null);
         Task<bool> deleteCultivationHarvest(int IdCultivationHarvest);
     }
 
     public class CultivationHarvestService : ICultivationHarvestService
     {
-        private readonly ICultivationHarvestHarvestRepository _cultivationHarvestRepository;
+        private readonly ICultivationHarvestRepository _cultivationHarvestRepository;
 
-        public CultivationHarvestService(ICultivationHarvestHarvestRepository cultivationHarvestHarvestRepository)
+        public CultivationHarvestService(ICultivationHarvestRepository cultivationHarvestHarvestRepository)
         {
             _cultivationHarvestRepository = cultivationHarvestHarvestRepository;
         }
 
-        public async Task<CultivationHarvest> createCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest)
+        public async Task<CultivationHarvest> createCultivationHarvest(int IdCultivation, int IdHarvest, float WeightHarvest)
         {
             return await _cultivationHarvestRepository.CreateCultivationHarvest(IdCultivation, IdHarvest, WeightHarvest);
         }
@@ -46,7 +46,7 @@ namespace CoffePartners.Services
             return await _cultivationHarvestRepository.GetCultivationHarvests();
         }
 
-        public async Task<CultivationHarvest> updateCultivationHarvest(int IdCultivationHarvest, Cultivation? IdCultivation = null, Harvest? IdHarvest = null, float? WeightHarvest = null)
+        public async Task<CultivationHarvest> updateCultivationHarvest(int IdCultivationHarvest, int? IdCultivation = null, int? IdHarvest = null, float? WeightHarvest = null)
         {
             CultivationHarvest cultivationHarvest = await getCultivationHarvest(IdCultivationHarvest);
 
@@ -59,9 +59,9 @@ namespace CoffePartners.Services
                 return null;
             }
 
-            if (IdCultivation != null) cultivationHarvest.IdCultivation = IdCultivation;
+            if (IdCultivation != null) cultivationHarvest.IdCultivation = (int)IdCultivation;
 
-            if (IdHarvest != null) cultivationHarvest.IdHarvest = IdHarvest;
+            if (IdHarvest != null) cultivationHarvest.IdHarvest = (int)IdHarvest;
 
             if (WeightHarvest != null) cultivationHarvest.WeightHarvest = (float)WeightHarvest;
 

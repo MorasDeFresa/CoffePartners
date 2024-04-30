@@ -41,7 +41,7 @@ namespace CoffePartners.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CultivationHarvest>> CreateCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest)
+        public async Task<ActionResult<CultivationHarvest>> CreateCultivationHarvest(int IdCultivation, int IdHarvest, float WeightHarvest)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace CoffePartners.Controllers
 
         [HttpPut("{IdCultivationHarvest}")]
 
-        public async Task<ActionResult<CultivationHarvest>> UpdateCultivationHarvest(int IdCultivationHarvest, Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest)
+        public async Task<ActionResult<CultivationHarvest>> UpdateCultivationHarvest(int IdCultivationHarvest, int IdCultivation, int IdHarvest, float WeightHarvest)
         {
             var updatedClass = await _cultivationHarvestService.updateCultivationHarvest(IdCultivationHarvest, IdCultivation, IdHarvest, WeightHarvest);
             if (updatedClass == null)

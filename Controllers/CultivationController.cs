@@ -8,6 +8,8 @@ using CoffePartners.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
+
+
 namespace CoffePartners.Controllers
 {
     [Route("api/[controller]")]
@@ -40,7 +42,7 @@ namespace CoffePartners.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Cultivation>> CreateCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation)
+        public async Task<ActionResult<Cultivation>> CreateCultivation(DateTime DateCultivation, float Area, int IdFarm, int IdStateCultivation)
         {
             try
             {
@@ -59,7 +61,7 @@ namespace CoffePartners.Controllers
         }
 
         [HttpPut("{IdCultivation}")]
-        public async Task<ActionResult<Cultivation>> UpdateCultivation(int IdCultivation, DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation)
+        public async Task<ActionResult<Cultivation>> UpdateCultivation(int IdCultivation, DateTime DateCultivation, float Area, int IdFarm, int IdStateCultivation)
         {
             var updatedClass = await _cultivationService.updateCultivation(IdCultivation, DateCultivation, Area, IdFarm, IdStateCultivation);
             if (updatedClass == null)

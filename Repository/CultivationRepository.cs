@@ -12,7 +12,7 @@ namespace CoffePartners.Repository
     {
         Task<List<Cultivation>> GetCultivations();
         Task<Cultivation> GetCultivation(int IdCultivation);
-        Task<Cultivation> CreateCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation);
+        Task<Cultivation> CreateCultivation(DateTime DateCultivation, float Area, int IdFarm, int IdStateCultivation);
         Task<Cultivation> UpdateCultivation(Cultivation cultivation);
         Task<bool> DeleteCultivation(int IdCultivation);
 
@@ -28,7 +28,7 @@ namespace CoffePartners.Repository
             _db = db;
         }
 
-        public async Task<Cultivation> CreateCultivation(DateTime DateCultivation, float Area, Farm IdFarm, StatesCultivation IdStateCultivation)
+        public async Task<Cultivation> CreateCultivation(DateTime DateCultivation, float Area, int IdFarm, int IdStateCultivation)
         {
             var newCultivation = new Cultivation()
             {

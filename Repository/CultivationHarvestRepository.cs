@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoffePartners.Repository
 {
-    public interface ICultivationHarvestHarvestRepository
+    public interface ICultivationHarvestRepository
     {
         Task<List<CultivationHarvest>> GetCultivationHarvests();
         Task<CultivationHarvest> GetCultivationHarvest(int IdCultivationHarvest);
-        Task<CultivationHarvest> CreateCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest);
+        Task<CultivationHarvest> CreateCultivationHarvest(int IdCultivation, int IdHarvest, float WeightHarvest);
         Task<CultivationHarvest> UpdateCultivationHarvest(CultivationHarvest CultivationHarvest);
         Task<bool> DeleteCultivationHarvest(int IdCultivationHarvest);
     }
 
-    public class CultivationHarvestRepository : ICultivationHarvestHarvestRepository
+    public class CultivationHarvestRepository : ICultivationHarvestRepository
     {
         private readonly DataContext _db;
 
@@ -26,7 +26,7 @@ namespace CoffePartners.Repository
             _db = db;
         }
 
-        public async Task<CultivationHarvest> CreateCultivationHarvest(Cultivation IdCultivation, Harvest IdHarvest, float WeightHarvest)
+        public async Task<CultivationHarvest> CreateCultivationHarvest(int IdCultivation, int IdHarvest, float WeightHarvest)
         {
             var newCultivationHarvest = new CultivationHarvest()
             {
