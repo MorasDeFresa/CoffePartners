@@ -1,7 +1,7 @@
 using CoffePartners.Data;
-using Microsoft.EntityFrameworkCore;
-using CoffePartners.Interfaces;
 using CoffePartners.Repository;
+using CoffePartners.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+
+#region Repostiories 
+builder.Services.AddScoped<ICultivationRepository, CultivationRepository>();
+builder.Services.AddScoped<ICultivationHarvestRepository, CultivationHarvestRepository>();
+#endregion
+
+#region Services
+builder.Services.AddScoped<ICultivationService, CultivationService>();
+builder.Services.AddScoped<ICultivationHarvestService, CultivationHarvestService>();
+#endregion
+
+// builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseURL"));
@@ -25,6 +36,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
