@@ -10,7 +10,7 @@ namespace CoffePartners.Models
     public class Score
     {
         [Key] public int IdScore { get; set; }
-        public float Points { get; set; }
+        public required float Points { get; set; }
         public required int IdLevel { get; set; }
         [ForeignKey("IdLevel")]
         public Level Level { get; set; }

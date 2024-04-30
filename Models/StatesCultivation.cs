@@ -8,7 +8,7 @@ namespace CoffePartners.Models
 {
     public class StatesCultivation
     {
-        [Key] public int IdStateCultivation { get; set; }
+        [Key] public int IdStatesCultivation { get; set; }
         public required string NameStateCultivation { get; set; }
     }
 }
