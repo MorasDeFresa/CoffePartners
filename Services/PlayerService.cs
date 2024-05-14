@@ -16,6 +16,7 @@ namespace CoffePartners.Services
         Task<Player> createPlayer(string EmailPlayer, string PasswordPlayer, string NicknamePlayer);
         Task<Player> updatePlayer(int IdPlayer, string? EmailPlayer = null, string? PasswordPlayer = null, string? NicknamePlayer = null);
         Task<bool> deletePlayer(int IdPlayer);
+        Task<Player> login(string userName, string password);
 
     }
 
@@ -70,6 +71,11 @@ namespace CoffePartners.Services
 
             return await _PlayerRepository.UpdatePlayer(Player);
 
+        }
+
+        public async Task<Player> login(string userName, string password)
+        {
+            return await _PlayerRepository.Login(userName, password);
         }
     }
 

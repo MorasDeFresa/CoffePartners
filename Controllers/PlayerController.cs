@@ -81,6 +81,26 @@ namespace CoffePartners.Controllers
             }
             return Ok(deletedClass);
         }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<bool>> Login(string userName, string password)
+        {
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                return BadRequest("El nombre de usuario y la contraseña son obligatorios");
+            }
+
+            var user = await _playerService.login(userName, password);
+
+            if (user != null)
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return Ok(false);
+            }
+        }
     }
 
 }

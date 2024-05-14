@@ -15,6 +15,7 @@ namespace CoffePartners.Repository
         Task<Player> CreatePlayer(string EmailPlayer, string PasswordPlayer, string NicknamePlayer);
         Task<Player> UpdatePlayer(Player Player);
         Task<bool> DeletePlayer(int IdPlayer);
+        Task<Player> Login(string userName, string password);
 
     }
 
@@ -71,5 +72,11 @@ namespace CoffePartners.Repository
             await _db.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Player> Login(string userName, string password)
+        {
+            return await _db.Players.FirstOrDefaultAsync(u => u.NicknamePlayer == userName && u.PasswordPlayer == password);
+        }
+
     }
 }
