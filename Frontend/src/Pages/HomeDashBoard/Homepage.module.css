@@ -1,0 +1,16 @@
+section {
+  align-items: center;
+  height: 100vh;
+  background-image: url("/img/LoginBackground.png");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-top: 1vh;
+}
+
+@media (max-width: 450px) {
+  section {
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
