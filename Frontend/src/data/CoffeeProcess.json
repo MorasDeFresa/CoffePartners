@@ -1,0 +1,24 @@
+{
+  "Cards": [
+    {
+      "title": "Origen",
+      "imageUrl": "https://www.bonka.es/themes/custom/bonka/img/plantones-cafeto-proceso-elaboracion.jpg",
+      "description": "Se planta para poder extraer el café"
+    },
+    {
+      "title": "Cultivo",
+      "imageUrl": "https://www.fertilab.com.mx/Sitio/img/Notas_Tecnicas/NTF-D01-Manejo-nutrimental-del-cultivo-de-cafe.jpg",
+      "description": "Se selecciona los frutos maduros y se descartan los frutos verdes"
+    },
+    {
+      "title": "Despulpado",
+      "imageUrl": "https://mundocafeto.com/wp-content/uploads/2019/05/despulpadora-de-cafe-750x440.jpg",
+      "description": "Se despulpa y clasifica controladamente con lacado de agua limpia"
+    },
+    {
+      "title": "Secado",
+      "imageUrl": "https://www.perfectdailygrind.com/wp-content/uploads/2017/05/secado-de-cafe-honey-850x567.jpg",
+      "description": "Se realiza el secado y clasificación de tamaño al sol y en ambientes secos y limpios"
+    }
+  ]
+}
