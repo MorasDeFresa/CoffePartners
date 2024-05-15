@@ -1,0 +1,10 @@
+.cards {
+  margin-top: 2rem;
+  display: flex;
+}
+
+@media (max-width: 450px) {
+  .cards {
+    display: inline;
+  }
+}
