@@ -1,0 +1,30 @@
+h3 {
+  text-align: left;
+}
+
+input {
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.eye {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  right: 7%;
+  bottom: 24%;
+}
+
+.login {
+  margin-top: 20vh;
+  width: 20%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12.5px);
+}
+
+@media (max-width: 450px) {
+  .login {
+    width: 60%;
+    margin-top: 0;
+  }
+}
