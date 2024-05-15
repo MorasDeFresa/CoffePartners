@@ -1,0 +1,18 @@
+.postCard {
+  box-shadow: 0px 4px 4px #6da679;
+  border-radius: 16px;
+  background-color: #9dca55;
+  padding: 1vh;
+  margin-bottom: 2rem;
+  width: 40rem;
+}
+
+@media (max-width: 450px) {
+  .cards {
+    display: inline;
+  }
+  .postCard {
+    width: 21.5rem;
+    padding: 0.5vh;
+  }
+}
