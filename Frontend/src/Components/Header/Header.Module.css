@@ -1,0 +1,41 @@
+.slogan {
+  font-size: clamp(3rem, 3rem + 1vw, 4rem);
+}
+
+.divHome {
+  margin-bottom: 3rem;
+  background-image: url("/img/Home.png");
+  max-width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.divTittle {
+  position: relative;
+  display: flex;
+  max-width: 45%;
+  top: 20%;
+  right: 10%;
+}
+
+#idSabor {
+  color: #5d2c1d;
+}
+
+@media (max-width: 450px) {
+  .divHome {
+    height: auto;
+  }
+  .divTittle {
+    left: 25%;
+    margin-top: 30%;
+  }
+  .slogan {
+    font-size: clamp(0.5rem, 0.7rem + 1vw, 2rem);
+  }
+}
+
+@media (max-width: 400px) {
+}

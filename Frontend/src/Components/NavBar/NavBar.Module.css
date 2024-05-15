@@ -1,0 +1,32 @@
+.navbar {
+  background-color: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-link {
+  color: rgb(0, 0, 0);
+  font-size: clamp(0.5rem, 2rem + 1vw, 1.2rem);
+}
+
+.nav-link:hover {
+  color: var(--button-color);
+}
+
+.next-element {
+  margin-top: 70px;
+}
+
+.FocusItem {
+  /* background-color: #6da679;
+  border-radius: 16px;
+  color: #fff; */
+}
+
+.FocusItem:hover {
+  /* background-color: #416148; */
+}
