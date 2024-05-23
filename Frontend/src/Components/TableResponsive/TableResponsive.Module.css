@@ -1,4 +1,13 @@
 /* inspired by: https://css-tricks.com/responsive-data-tables/ */
+.tableDiv {
+  margin-top: 2rem;
+  max-width: 80%;
+}
+
+.action {
+  font-size: medium !important;
+}
+
 .responsiveTable {
   width: 100%;
 }
@@ -12,6 +21,9 @@
     Force table elements to not behave like tables anymore
     Hide table headers (but not display: none;, for accessibility)
   */
+  .action {
+    font-size: clamp(1.5rem, 1.5rem + 1vw, 3rem) !important;
+  }
 
   .responsiveTable table,
   .responsiveTable thead,
