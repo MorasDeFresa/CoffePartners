@@ -22,8 +22,13 @@ function SinglePost({ title, subtitle, imageUrl, description }) {
     <div className="postCard card">
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <h3 className="card-subtitle mb-2 text-body-secondary">{subtitle}</h3>
-        <LazyLoadImage src={imageUrl} alt="..." width={flagImg ? 300 : 600} />
+        {/* <h3 className="card-subtitle mb-2 text-body-secondary">{subtitle}</h3> */}
+        <LazyLoadImage
+          className="ImgPost"
+          src={imageUrl}
+          alt="..."
+          width={flagImg ? 100 : 300}
+        />
         <p className="card-text">{formattedDescription}</p>
       </div>
     </div>

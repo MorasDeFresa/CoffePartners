@@ -3,8 +3,12 @@
   border-radius: 16px;
   background-color: #9dca55;
   padding: 1vh;
-  margin-bottom: 2rem;
-  width: 40rem;
+  margin: 2rem;
+  width: 30rem;
+}
+
+.ImgPost {
+  width: 25rem;
 }
 
 @media (max-width: 450px) {
@@ -14,5 +18,8 @@
   .postCard {
     width: 21.5rem;
     padding: 0.5vh;
+  }
+  .ImgPost {
+    width: 18rem;
   }
 }
