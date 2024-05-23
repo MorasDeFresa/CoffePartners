@@ -1,0 +1,33 @@
+h3 {
+  text-align: left;
+}
+
+input {
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.eyeRegister {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  right: 7%;
+  bottom: 44%;
+}
+
+.register {
+  margin-top: 5vh;
+  width: 40%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12.5px);
+}
+
+@media (max-width: 450px) {
+  .register {
+    width: 90%;
+    margin-top: 2vh;
+  }
+  .eyeRegister {
+    bottom: 50.5%;
+  }
+}
