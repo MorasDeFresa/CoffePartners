@@ -65,6 +65,10 @@ i.bi {
   width: 100%;
 }
 
+.WithoutMargin {
+  margin: 0 !important;
+}
+
 input {
   background-color: transparent;
   border: none;
@@ -76,7 +80,22 @@ input {
   max-height: 2rem;
 }
 
+textarea {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  max-height: 15rem;
+}
+
 input:focus {
+  outline: none;
+}
+
+textarea:focus {
   outline: none;
 }
 
@@ -87,6 +106,10 @@ input:focus {
 
   .App {
     height: auto;
+  }
+
+  p {
+    padding: 1rem;
   }
 
   img {
