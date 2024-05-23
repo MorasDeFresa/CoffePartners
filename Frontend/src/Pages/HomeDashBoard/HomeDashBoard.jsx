@@ -1,17 +1,13 @@
-import "./Homepage.module.css";
+import "./Homepage.Module.css";
 import Login from "../../Components/Login/Login";
+import Register from "../../Components/Register/Register";
 import NavBar from "../../Components/NavBar/NavBar";
-
 function HomeDashBoard() {
-  //Disable Margin and Borders for only this page
-
   return (
-    <>
-      <section>
-        <NavBar />
-        <Login />
-      </section>
-    </>
+    <section className="Login">
+      <NavBar />
+      {location?.pathname == "/sign-in" ? <Login /> : <Register />}
+    </section>
   );
 }
 

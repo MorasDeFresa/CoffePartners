@@ -1,6 +1,6 @@
-section {
+.Login {
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("/img/LoginBackground.png");
   background-size: cover;
   background-position: right;
@@ -9,7 +9,7 @@ section {
 }
 
 @media (max-width: 450px) {
-  section {
+  .Login {
     align-items: flex-start;
     justify-content: center;
   }
