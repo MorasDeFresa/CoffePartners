@@ -1,9 +1,9 @@
 import "./Login.Module.css";
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../hooks/useCookies";
 import Loading from "../Loading/Loading";
+import { requestApi } from "../../hooks/useApi";
 import toast from "react-hot-toast";
 
 function Login() {
@@ -12,50 +12,27 @@ function Login() {
   const [wait, setWait] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const Login = () => {
+  const Login = async () => {
     setWait(true);
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/sign-in`, {
-        EmailUser,
-        PasswordUser,
-      })
-      .then(function (response) {
-        if (response?.data?.idDeveloper) {
-          setCookie({
-            name: "auth",
-            value: {
-              DeveloperData: {
-                idCookie: response?.data?.idDeveloper,
-                Name: response?.data?.nameDeveloper,
-                Surname: response?.data?.surnameDeveloper,
-              },
-              role: "Developer",
-            },
-          });
-          toast.success(
-            `Bienvenido developer ${response?.data?.nameDeveloper}`
-          );
-          navigate("/");
-        } else if (response?.data?.idPlayer) {
-          setCookie({
-            name: "auth",
-            value: {
-              Player: {
-                idCookie: response?.data?.idPlayer,
-                NickName: response?.data?.nickNamePlayer,
-              },
-              role: "Player",
-            },
-          });
-          toast.success(
-            `Has iniciado sesión correctamente, Bienvenido ${response?.data?.nickNamePlayer}`
-          );
-          navigate("/blog");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
+    try {
+      const { data } = await requestApi({
+        typeRequest: "post",
+        endPoint: "/sign-in",
+        bodyData: { EmailUser, PasswordUser },
       });
+      setCookie({
+        name: "role",
+        value: data?.idAdmin ? "Admin" : "Farmer",
+      });
+      sessionStorage.setItem("auth", JSON.stringify(data));
+      toast.success(`Sesión iniciada correctamente`);
+      navigate(data?.idAdmin ? "/" : "/blog");
+    } catch (error) {
+      setWait(false);
+      setUsername("");
+      setPassword("");
+      toast.error(`Error al iniciar sesión, verifica tus datos`);
+    }
   };
 
   const handleSubmit = (event) => {
