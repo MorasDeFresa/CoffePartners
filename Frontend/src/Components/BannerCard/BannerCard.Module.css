@@ -1,0 +1,32 @@
+.IconUrl {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.banner {
+  width: 80%;
+  height: 150px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.banner:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 450px) {
+  .banner {
+    width: 40vh;
+    height: 21vh;
+  }
+
+  .IconUrl {
+    width: 100%;
+    object-position: right;
+  }
+}

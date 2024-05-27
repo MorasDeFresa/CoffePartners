@@ -66,7 +66,7 @@ namespace Backend.Controllers
             }
         }
 
-        [HttpGet("details/plant/{IdPlant}")]
+        [HttpGet("details/{IdPlant}")]
         public async Task<ActionResult<Harvest>> GetDetailsHarvest(int IdPlant)
         {
             try

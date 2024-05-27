@@ -10,11 +10,20 @@ import LogOut from "./Components/LogOut/LogOut";
 const HomeDashBoard = lazy(() => import("./Pages/HomeDashBoard/HomeDashBoard"));
 const Home = lazy(() => import("./Pages/Home/Home"));
 const Blog = lazy(() => import("./Pages/Blog/Blog"));
-const FarmerReport = lazy(() => import("./Pages/FarmerReport/FarmerReport"));
+import FarmerReport from "./Pages/FarmerReport/FarmerReport";
+import React, { useState } from "react";
+import FarmerHome from "./Pages/FarmerHome/FarmerHome";
+
+export const ModalContext = React.createContext();
 
 function App() {
+  const [openModal, setOpenModal] = useState(false);
+  const [content, setContent] = useState(<h1>A</h1>);
+
   return (
-    <>
+    <ModalContext.Provider
+      value={[openModal, setOpenModal, content, setContent]}
+    >
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         {/* Public routes */}
@@ -64,48 +73,15 @@ function App() {
         <Route element={<RequireRole authRol={["Farmer"]} />}>
           <Route path="/farmer/report/harvest" element={<FarmerReport />} />
           <Route path="/farmer/report/plant" element={<FarmerReport />} />
+          <Route path="/farmer" element={<FarmerHome />} />
         </Route>
 
         {/* Admin Routes */}
         <Route element={<RequireRole authRol={["Admin"]} />}>
-          <Route
-            path="/developer"
-            element={
-              <TableResponsive
-                data={[
-                  {
-                    idUser: 2,
-                    emailUser: "test@gmail.com",
-                    passwordUser: "test0105A#",
-                  },
-                  {
-                    idUser: 5,
-                    emailUser: "test",
-                    passwordUser: "dGVzdA==",
-                  },
-                  {
-                    idUser: 6,
-                    emailUser: "bencito10@gmail.com",
-                    passwordUser: "MTIzNzg5QVEzQGE=",
-                  },
-                  {
-                    idUser: 7,
-                    emailUser: "admin",
-                    passwordUser: "YWRtaW4=",
-                  },
-                  {
-                    idUser: 8,
-                    emailUser: "hola@live.com",
-                    passwordUser: "SnVhbjEyMzQu",
-                  },
-                ]}
-                caption={"test"}
-              />
-            }
-          />
+          <Route path="/developer" element={<Developer />} />
         </Route>
       </Routes>
-    </>
+    </ModalContext.Provider>
   );
 }
 

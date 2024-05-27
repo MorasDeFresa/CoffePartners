@@ -1,0 +1,33 @@
+.Modal {
+  position: absolute;
+  top: 40%;
+  left: 23%;
+  transform: translate(-15%, -40%);
+  background-color: var(--background-color);
+  z-index: 999;
+  padding: 2em;
+  max-width: 80%;
+  min-height: 60vh;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(222, 215, 228, 0.8);
+  height: 100vh;
+}
+
+.CloseButton {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  background-color: transparent;
+  border: 0 solid transparent;
+}
+
+.prueba {
+  color: aqua;
+}

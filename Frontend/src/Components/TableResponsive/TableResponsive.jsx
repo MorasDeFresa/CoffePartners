@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Table, Tbody, Td, Th, Thead, Tr } from "./index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./TableResponsive.Module.css";
 function TableResponsive({
   headers,
@@ -10,8 +10,25 @@ function TableResponsive({
   remove,
   specific = false,
   view,
+  add,
 }) {
-  const [keysData] = useState(Object.keys(data[0]));
+  const [keysData, setKeysData] = useState([]);
+
+  useEffect(() => {
+    setKeysData(Object.keys(data[0]));
+  }, []);
+
+  if (data?.length < 1) {
+    return (
+      <div>
+        <br />
+        <h2>No se encontraron reportes</h2>
+        <button className="btn WithoutMargin" onClick={add}>
+          Crea tu primer registro
+        </button>
+      </div>
+    );
+  }
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -75,11 +92,10 @@ function TableResponsive({
               ) : (
                 <button
                   type="button"
-                  id={row[keysData[0]]}
                   className="WithoutMargin btn btn-warning"
-                  onClick={(e) => view(e.target.id)}
+                  onClick={() => view(row[keysData[0]])}
                 >
-                  <i className="action bi bi-eye"></i>
+                  <i className="action bi bi-eye"> Detalles</i>
                 </button>
               )}
             </Td>

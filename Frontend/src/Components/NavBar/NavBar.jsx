@@ -33,8 +33,8 @@ function NavBar() {
             {authRole === "Farmer" && (
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
-                    Inicio
+                  <a className="nav-link" aria-current="page" href="/farmer">
+                    Zona del cafetero
                   </a>
                 </li>
                 <li className="nav-item">
@@ -68,7 +68,7 @@ function NavBar() {
                     </li>
                   </ul>
                 </li>
-                <li className="nav-item dropdown">
+                {/* <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"
@@ -95,7 +95,7 @@ function NavBar() {
                       </a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
                 <li className="nav-item disabled">
                   <a className="FocusItem nav-link" href="/sign-out">
                     Cerrar Sesión
@@ -127,11 +127,11 @@ function NavBar() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
-                        Calidad del cafe
+                      <a className="dropdown-item" href="/developer">
+                        Posts
                       </a>
                     </li>
-                    <li>
+                    {/* <li>
                       <a className="dropdown-item" href="#">
                         Estados de las plantas
                       </a>
@@ -148,10 +148,10 @@ function NavBar() {
                       <a className="dropdown-item" href="#">
                         Puntuaciones
                       </a>
-                    </li>
+                    </li> */}
                   </ul>
                 </li>
-                <li className="nav-item dropdown">
+                {/* <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"
@@ -173,7 +173,7 @@ function NavBar() {
                       </a>
                     </li>
                   </ul>
-                </li>
+                </li> */}
                 <li className="nav-item disabled">
                   <a className="FocusItem nav-link" href="/sign-out">
                     Cerrar Sesión

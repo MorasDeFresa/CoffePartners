@@ -74,6 +74,7 @@ namespace Backend.Controllers
             try
             {
                 var user = await _UserRepository.LoginUser(User.EmailUser, User.PasswordUser);
+                Console.WriteLine(user[0]);
                 if (user[0] == 1) return RedirectToAction(nameof(GetAdmin), new { IdAdmin = user[1] });
                 else if (user[0] == 0) return RedirectToAction(nameof(GetFarmer), new { IdFarmer = user[1] });
                 return NotFound("User not found");

@@ -99,16 +99,15 @@ namespace Backend.Interfaces
 
             if (admin != null)
             {
-                Console.Write(admin.IdAdmin);
                 loginUser[0] = 1;
                 loginUser[1] = admin.IdAdmin;
             }
             else if (Farmer != null)
             {
-                Console.Write(Farmer.IdFarmer);
                 loginUser[0] = 0;
                 loginUser[1] = Farmer.IdFarmer;
             }
+            else if (admin == null && Farmer == null) throw new Exception("Usuario no encontrado");
             return loginUser;
         }
 

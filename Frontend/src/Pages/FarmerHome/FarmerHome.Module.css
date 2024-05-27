@@ -1,0 +1,54 @@
+.ReportDiv {
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("/img/BackgroundFarmer.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 1vh;
+}
+
+.half {
+  margin: 1rem;
+  width: 50%;
+}
+
+.divBanner {
+  display: flex;
+}
+
+.ReportDiv::before {
+  content: "";
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Cambia el color y la opacidad según sea necesario */
+  z-index: 0;
+}
+
+.ReportDiv > * {
+  position: relative;
+}
+
+@media (max-width: 450px) {
+  .divBanner {
+    display: inline;
+  }
+
+  .half {
+    margin: 1rem;
+    width: 90%;
+  }
+
+  .player {
+    width: 80%;
+  }
+}

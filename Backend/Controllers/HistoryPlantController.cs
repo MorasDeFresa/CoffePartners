@@ -10,14 +10,12 @@ namespace Backend.Controllers
 {
     public class HistoryPlantPost()
     {
-        public required DateTime DatePlantProcess { get; set; }
         public required int IdPlant { get; set; }
         public required int IdPlantState { get; set; }
     }
 
     public class HistoryPlantPut()
     {
-        public DateTime? DatePlantProcess { get; set; }
         public int? IdPlant { get; set; }
         public int? IdPlantState { get; set; }
     }
@@ -39,7 +37,7 @@ namespace Backend.Controllers
         {
             try
             {
-                return Ok(await _HistoryPlantRepository.GetHistoryPlants());
+                return Ok(await _HistoryPlantRepository.GetGroupedHistoryPlant());
             }
             catch (Exception ex)
             {
@@ -66,6 +64,25 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet("details/{IdPlant}")]
+        public async Task<ActionResult<Harvest>> GetDetailsHarvest(int IdPlant)
+        {
+            try
+            {
+                var Harvest = await _HistoryPlantRepository.GetDetailHistoryPlant(IdPlant);
+                if (Harvest == null)
+                {
+                    return NotFound("Plant not found");
+                }
+                return Ok(Harvest);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult<HistoryPlant>> CreateHistoryPlant(HistoryPlantPost HistoryPlantPost)
         {
@@ -73,7 +90,7 @@ namespace Backend.Controllers
             {
                 var HistoryPlant = new HistoryPlant
                 {
-                    DatePlantProcess = HistoryPlantPost.DatePlantProcess,
+                    DatePlantProcess = DateTime.Now,
                     IdPlant = HistoryPlantPost.IdPlant,
                     IdPlantState = HistoryPlantPost.IdPlantState
                 };
@@ -100,9 +117,8 @@ namespace Backend.Controllers
                 var HistoryPlant = await _HistoryPlantRepository.GetHistoryPlant(IdHistoryPlant);
                 if (HistoryPlant == null) return BadRequest("update HistoryPlant");
                 if (HistoryPlantPut.IdPlant != null) HistoryPlant.IdPlant = (int)HistoryPlantPut.IdPlant;
-                if (HistoryPlantPut.DatePlantProcess != null) HistoryPlant.DatePlantProcess = (DateTime)HistoryPlantPut.DatePlantProcess;
                 if (HistoryPlantPut.IdPlantState != null) HistoryPlant.IdPlantState = (int)HistoryPlantPut.IdPlantState;
-
+                HistoryPlant.DatePlantProcess = DateTime.Now;
                 var updatedHistoryPlant = await _HistoryPlantRepository.UpdateHistoryPlant(HistoryPlant);
                 if (updatedHistoryPlant == null)
                 {

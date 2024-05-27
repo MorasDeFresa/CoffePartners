@@ -1,5 +1,6 @@
 import NavBar from "../../Components/NavBar/NavBar";
 import HarvestReport from "../../Components/HarvestReport/HarvestReport";
+import PlantReport from "../../Components/PlantReport/PlantReport";
 import "./FarmerReport.Module.css";
 import { Navigate } from "react-router-dom";
 
@@ -16,7 +17,7 @@ function FarmerReport() {
       {location?.pathname == "/farmer/report/harvest" ? (
         <HarvestReport />
       ) : (
-        <h1>AAA</h1>
+        <PlantReport />
       )}
     </section>
   );

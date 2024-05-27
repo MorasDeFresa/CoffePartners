@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-lazy-load-image-component": "^1.6.0",
+    "react-player": "^2.16.0",
     "react-router-dom": "^6.23.1",
     "react-super-responsive-table": "github:EFFM00/react-super-responsive-table",
     "sort-by": "^1.2.0",

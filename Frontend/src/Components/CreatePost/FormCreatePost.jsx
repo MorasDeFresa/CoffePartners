@@ -8,7 +8,7 @@ import Loading from "../Loading/Loading";
 
 function FormCreatePost() {
   const [newPost, setNewPost] = useState({
-    idDeveloper: getCookie({ name: "auth" })?.DeveloperData?.idCookie,
+    idAdmin: JSON.parse(sessionStorage.getItem("auth"))?.idAdmin,
   });
 
   const [wait, setWait] = useState(false);
@@ -54,7 +54,7 @@ function FormCreatePost() {
         .then(function (response) {
           setWait(false);
           setNewPost({
-            idDeveloper: getCookie({ name: "auth" })?.DeveloperData?.idCookie,
+            idAdmin: JSON.parse(sessionStorage.getItem("auth"))?.idAdmin,
           });
           navigate("/blog");
         })

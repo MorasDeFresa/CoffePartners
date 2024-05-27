@@ -5,10 +5,12 @@ import { getCookie } from "../../hooks/useCookies";
 export function RequireRole({ authRol }) {
   try {
     const role = getCookie({ name: "role" });
-    const flagAuth = authRol?.map((rol) => {
-      if (role == rol) return true;
+
+    let flagAuth = false;
+    authRol?.map((rol) => {
+      if (role == rol) flagAuth = true;
     });
-    if (flagAuth) return <Outlet />;
+    if (flagAuth == true) return <Outlet />;
     else return <Navigate to="/" replace />;
   } catch (error) {
     return <Navigate to="/" replace />;
